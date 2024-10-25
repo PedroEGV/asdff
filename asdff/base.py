@@ -14,7 +14,7 @@ from asdff.utils import (
     mask_dilate,
     mask_gaussian_blur,
 )
-from asdff.yolo import yolo_detector
+from asdff.yolo import yolo_face_detector
 
 logger = logging.get_logger("diffusers")
 
@@ -122,7 +122,7 @@ class AdPipelineBase(ABC):
 
     @property
     def default_detector(self) -> Callable[..., list[Image.Image] | None]:
-        return yolo_detector
+        return yolo_face_detector
 
     def _get_txt2img_args(
         self, common: Mapping[str, Any], txt2img_only: Mapping[str, Any]

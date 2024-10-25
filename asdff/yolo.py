@@ -78,3 +78,31 @@ def yolo_detector(
         masks = mask_to_pil(pred[0].masks.data, image.size)
 
     return masks
+
+def yolo_face_detector(
+        image: Image.Image,
+        confidence: float = 0.3
+    ) -> list[Image.Image] | None:
+    model_path = hf_hub_download("Bingsu/adetailer", "face_yolov8n.pt")
+    return yolo_detector(image, model_path=model_path, confidence=confidence)
+
+def yolo_hand_detector(
+        image: Image.Image,
+        confidence: float = 0.3
+    ) -> list[Image.Image] | None:
+    model_path = hf_hub_download("Bingsu/adetailer", "hand_yolov9c.pt")
+    return yolo_detector(image, model_path=model_path, confidence=confidence)
+
+def yolo_person_detector(
+        image: Image.Image,
+        confidence: float = 0.3
+    ) -> list[Image.Image] | None:
+    model_path = hf_hub_download("Bingsu/adetailer", "person_yolov8s-seg.pt")
+    return yolo_detector(image, model_path=model_path, confidence=confidence)
+
+def yolo_clothes_detector(
+        image: Image.Image,
+        confidence: float = 0.3
+    ) -> list[Image.Image] | None:
+    model_path = hf_hub_download("Bingsu/adetailer", "deepfashion2_yolov8s-seg.pt")
+    return yolo_detector(image, model_path=model_path, confidence=confidence)
